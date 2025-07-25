@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vintage Secure Chat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Old+Standard+TT&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        .hero-section {
+            background-image: url("{{ url_for('static', filename='images/vintage-paper-texture.jpg') }}");
+            background-size: cover;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        .cta-primary {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        .cta-secondary {
+            background-color: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="vintage-frame">
+        <header class="vintage-header">
+            <h1>Vintage Secure Chat</h1>
+            <nav>
+                <a href="{{ url_for('login') }}" class="nav-link">Login</a>
+                <a href="{{ url_for('register') }}" class="nav-link">Register</a>
+            </nav>
+        </header>
+        
+        <main class="hero-section">
+            <div class="vintage-panel" style="max-width: 800px;">
+                <h2 style="font-size: 2.2rem;">Private Conversations with Vintage Charm</h2>
+                <p style="font-size: 1.2rem; margin: 1rem 0 2rem;">End-to-end encrypted messaging in a classic aesthetic</p>
+                
+                <div class="cta-buttons">
+                    <a href="{{ url_for('register') }}" class="vintage-button cta-primary">Get Started</a>
+                    <a href="{{ url_for('login') }}" class="vintage-button cta-secondary">Existing User</a>
+                </div>
+                
+                <div class="security-badges" style="margin-top: 2rem;">
+                    <span class="vintage-badge">RSA-2048 Encryption</span>
+                    <span class="vintage-badge">AES-256 Messages</span>
+                    <span class="vintage-badge">No Message Storage</span>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="vintage-footer">
+            <p>© 2023 Vintage Secure Chat - End-to-End Encrypted</p>
+        </footer>
+    </div>
+</body>
+</html>

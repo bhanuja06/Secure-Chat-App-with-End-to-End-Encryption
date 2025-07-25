@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vintage Secure Chat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Old+Standard+TT&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <style>
+        :root {
+            --bg-color: {{ VINTAGE_THEMES[current_theme]['bg'] }};
+            --text-color: {{ VINTAGE_THEMES[current_theme]['text'] }};
+            --accent-color: {{ VINTAGE_THEMES[current_theme]['accent'] }};
+        }
+    </style>
+</head>
+<body>
+    <div class="vintage-frame">
+        <header class="vintage-header">
+            <h1>Vintage Secure Chat</h1>
+            <nav>
+                <a href="{{ url_for('chat') }}">Home</a>
+                <a href="#">Settings</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </nav>
+            <script src="{{ url_for('static', filename='js/themes.js') }}"></script>
+        </header>
+        
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+        
+        <footer class="vintage-footer">
+            <p>© 2023 Vintage Secure Chat - End-to-End Encrypted</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="chat-container">
+    <!-- Sidebar Section -->
+    <div class="sidebar vintage-panel">
+        <h2>Chat Rooms</h2>
+        <ul class="room-list">
+            {% for room in rooms %}
+            <li>
+                <a href="#" 
+                   class="room-link" 
+                   data-room-id="{{ room.id }}">
+                    <span class="room-name">{{ room.name }}</span>
+                    <span class="room-desc">{{ room.description }}</span>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+        
+        <!-- Theme Selector -->
+        <div class="theme-selector">
+            <h3>Vintage Themes</h3>
+            <div class="theme-options">
+                {% for theme_name, theme_colors in themes.items() %}
+                <a href="{{ url_for('change_theme', theme_name=theme_name) }}"
+                class="theme-option theme-{{ theme_name }} {% if theme_name == current_theme %}active{% endif %}">
+                {{ theme_name|title }}
+            </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+<div class="theme-options">
+  {% for theme_name, theme_colors in themes.items() %}
+  <a href="{{ url_for('change_theme', theme_name=theme_name) }}" 
+     class="theme-option {% if theme_name == current_theme %}active{% endif %}"
+     data-bg-color="{{ theme_colors.bg }}"
+     data-text-color="{{ theme_colors.text }}">
+     {{ theme_name|title }}
+  </a>
+  {% endfor %}
+</div>
+    <!-- Main Chat Area -->
+    <div class="chat-area vintage-panel">
+        <div class="chat-header">
+            <h2 id="current-room">Select a room</h2>
+        </div>
+        
+        <div class="messages" id="messages">
+            <!-- Messages will appear here -->
+        </div>
+        
+        <div class="message-input">
+            <textarea id="message-input" 
+                      placeholder="Type your encrypted message..."
+                      rows="3"></textarea>
+            <button type="button" id="send-button">Send</button>
+        </div>
+    </div>
+    
+    <!-- User Panel -->
+    <div class="user-panel vintage-panel">
+        <div class="user-info">
+            <h3>{{ current_user.username }}</h3>
+            <p>Secure connection</p>
+            <div class="vintage-badge">
+                <span>E2EE Enabled</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
